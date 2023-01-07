@@ -5,22 +5,34 @@ internal class Program
     private static void Main(string[] args)
     {
         Console.WriteLine("Hello, World!");
-        Console.WriteLine("what's your name? ");
-        Console.Write("My name is: ");
-        string userName = AskInput("Bob");
-        Console.WriteLine(userName);
+        Number objNumber = new Number();
+        Console.WriteLine(objNumber.numberString);
+        Level objLevel = new Level(0);
+        Console.WriteLine(objLevel.depth);
     }
 
-    /*
-     * Takes an input and returns a default value if empty.
-     * 
-     * @param {defaultValue} The default value. 
-     * @returns {input} OR defaultValue if empty.
-     */
-    public static string AskInput(string defaultValue = "Unknown")
-    {
-        string? input = Console.ReadLine();
-        return String.IsNullOrEmpty(input) ? defaultValue : input;
-    }
 }
 
+internal class Calculate
+{
+
+}
+internal class SplitInput
+{
+
+}
+
+internal class Number
+{
+    internal string numberString = "";
+    internal bool isFloat => this.numberString.Contains('.');
+    internal bool isNegative => this.numberString.Contains('-');
+
+}
+
+internal class Level
+{
+    internal List<string> levelContents = new List<string>();
+    internal int depth;
+    internal Level(int depth) { this.depth = depth; }
+}
