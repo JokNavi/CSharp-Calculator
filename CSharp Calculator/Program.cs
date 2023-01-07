@@ -10,7 +10,14 @@ internal class Program
         string userName = AskInput("Bob");
         Console.WriteLine(userName);
     }
-    public static string AskInput(string defaultValue)
+
+    /*
+     * Takes an input and returns a default value if empty.
+     * 
+     * @param {defaultValue} The default value. 
+     * @returns {input} OR defaultValue if empty.
+     */
+    public static string AskInput(string defaultValue = "Unknown")
     {
         string? input = Console.ReadLine();
         return String.IsNullOrEmpty(input) ? defaultValue : input;
