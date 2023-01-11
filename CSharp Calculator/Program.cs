@@ -18,11 +18,6 @@
             LayerCollection convertedEquation = inputStringToTokens.TokeniseEquation();
             Console.WriteLine(string.Join(',', convertedEquation.layerContent));
         }
-
-        private static void Testing()
-        {
-            
-        }
     }
 
     /*
@@ -32,7 +27,7 @@
     * 
     * @constructor {iToken}
     */
-    internal interface iToken 
+    internal interface iToken
     {
         public string tokenString
         {
@@ -63,7 +58,7 @@
     /*
     * LayerCollection constructor used for keeping track of a number's properties.
     * 
-    * @version: 2.0
+    * @version: 2.1
     * 
     * @constructor {NumberCollection}
     */
@@ -75,7 +70,7 @@
             get => _tokenString;
             set => _tokenString = value;
         }
-        internal NumberInfo (string inputString ) { this.tokenString = inputString; }
+        internal NumberInfo(string inputString) { this.tokenString = inputString; }
         internal bool isFloat => this.tokenString.Contains('.');
 
     }

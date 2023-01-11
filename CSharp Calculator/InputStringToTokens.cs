@@ -12,12 +12,20 @@
             this.inputEquation = inputString.ToCharArray().Select(c => c.ToString()).ToList();
         }
 
+        /*
+        * TokeniseEquation(): Returns a list of LayerCollection type. Stores operators and numbers in different object types under the same interface.
+        * 
+        * @version: 1.0
+        * 
+        * @returns: {this.finalEquation}: LayerCollection
+        *  
+        */
         internal LayerCollection TokeniseEquation()
         {
             bool isAppended = false;
             foreach (string currentCharacter in this.inputEquation)
             {
-                
+
                 if (isNumeric(currentCharacter) || currentCharacter == ".")
                 {
                     this.currentNumber.tokenString += currentCharacter;
@@ -30,11 +38,23 @@
                     this.finalEquation.layerContent.Add(new OperatorInfo(currentCharacter));
                     isAppended = false;
                 }
-                
+
             }
             if (isAppended) { this.finalEquation.layerContent.Add(this.currentNumber); }
             return this.finalEquation;
         }
+
+        /*
+        * IsNumeric(): Returns if a string is a floating point number or not.
+        * 
+        * @version: 1.0
+        * 
+        * @returns: {Bool}
+        *  
+        * @param: {s}: To be tested number in string form.
+        * 
+        * @private
+        */
         private static bool isNumeric(string s) => int.TryParse(s, out _);
     }
 }

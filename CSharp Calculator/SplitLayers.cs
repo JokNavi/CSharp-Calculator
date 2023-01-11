@@ -4,7 +4,12 @@
     {
         private protected LayerCollection finalEquation;
         private protected LayerCollection currentLayer;
+        private protected LayerCollection inputLayer;
 
+        internal SplitLayers(LayerCollection inputLayer)
+        {
+            this.inputLayer = inputLayer;
+        }
         /*
          * Transforms an input equation into a LayerColletion object with Layers as seperate nested lists.
          * 
