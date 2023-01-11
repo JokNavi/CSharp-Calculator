@@ -11,25 +11,17 @@
 
         private static void Calculator()
         {
-            LayerCollection layerSplitEquation;
             Console.Write("Please input your calculation: ");
             string? inputEquation = Console.ReadLine();
             if (String.IsNullOrEmpty(inputEquation)) { Console.WriteLine("Equation is empty."); return; }
-            else
-            {
-                SplitLayers splitLayers = new(inputEquation);
-                layerSplitEquation = splitLayers.SplitEquation();
-            }
-            //Console.WriteLine(string.Join(',', layerSplitEquation.layerContent));
+            InputStringToTokens inputStringToTokens = new InputStringToTokens(inputEquation);
+            LayerCollection convertedEquation = inputStringToTokens.TokeniseEquation();
+            Console.WriteLine(string.Join(',', convertedEquation.layerContent));
         }
 
         private static void Testing()
         {
-            Console.WriteLine("Hello, World!");
-            NumberInfo number = new NumberInfo("5");
-            Console.WriteLine(number.numberString);
-            LayerCollection layer = new LayerCollection(0);
-            Console.WriteLine(layer.depth);
+            
         }
     }
 
@@ -40,7 +32,14 @@
     * 
     * @constructor {iToken}
     */
-    internal interface iToken { }
+    internal interface iToken 
+    {
+        public string tokenString
+        {
+            get;
+            set;
+        }
+    }
 
     /*
     * OperatorInfo constructor used to give Operators an object type.
@@ -51,9 +50,14 @@
     */
     internal class OperatorInfo : iToken
     {
-        internal string operatorString = "";
-        internal bool isLayerSeparator => this.operatorString.Contains('(') || this.operatorString.Contains(')');
-        internal OperatorInfo(string operatorString) { this.operatorString = operatorString; }
+        internal string _tokenString = "";
+        public string tokenString
+        {
+            get => _tokenString;
+            set => _tokenString = value;
+        }
+        internal bool isLayerSeparator => this.tokenString.Contains('(') || this.tokenString.Contains(')');
+        internal OperatorInfo(string operatorString) { this.tokenString = operatorString; }
     }
 
     /*
@@ -65,10 +69,14 @@
     */
     internal class NumberInfo : iToken
     {
-        internal string numberString = "";
-        internal NumberInfo(string numberString) { this.numberString = numberString; }
-        internal bool isFloat => this.numberString.Contains('.');
-        internal bool isNegative => this.numberString.Contains('-');
+        internal string _tokenString = "";
+        public string tokenString
+        {
+            get => _tokenString;
+            set => _tokenString = value;
+        }
+        internal NumberInfo (string inputString ) { this.tokenString = inputString; }
+        internal bool isFloat => this.tokenString.Contains('.');
 
     }
     /*

@@ -18,6 +18,6 @@
 
             return this.finalEquation;
         }
-        
+
     }
 }
