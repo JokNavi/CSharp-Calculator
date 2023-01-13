@@ -5,8 +5,8 @@
     {
         private static void Main(string[] args)
         {
-            //Testing();
             Calculator();
+            
         }
 
         private static void Calculator()
@@ -14,9 +14,14 @@
             Console.Write("Please input your calculation: ");
             string? inputEquation = Console.ReadLine();
             if (String.IsNullOrEmpty(inputEquation)) { Console.WriteLine("Equation is empty."); return; }
+
             InputStringToTokens inputStringToTokens = new InputStringToTokens(inputEquation);
             LayerCollection convertedEquation = inputStringToTokens.TokeniseEquation();
-            Console.WriteLine(string.Join(',', convertedEquation.layerContent));
+            //Console.WriteLine(string.Join(',', convertedEquation.layerContent));
+
+            SplitLayers splitLayers = new SplitLayers(convertedEquation);
+            convertedEquation = splitLayers.SplitEquation();
+            Console.WriteLine("Done");
         }
     }
 
@@ -81,8 +86,16 @@
     * 
     * @constructor {LayerCollection}
     */
-    internal class LayerCollection
+    internal class LayerCollection : iToken
     {
+
+        internal string _tokenString = "";
+        public string tokenString
+        {
+            get => _tokenString;
+            set => _tokenString = value;
+        }
+
         internal List<iToken> layerContent = new List<iToken>();
         internal int depth;
         internal LayerCollection(int depth) { this.depth = depth; }

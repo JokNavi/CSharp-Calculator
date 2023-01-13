@@ -4,24 +4,37 @@
     {
         private protected LayerCollection finalEquation;
         private protected LayerCollection currentLayer;
-        private protected LayerCollection inputLayer;
-
         internal SplitLayers(LayerCollection inputLayer)
         {
-            this.inputLayer = inputLayer;
+            this.currentLayer = inputLayer;
         }
+
         /*
          * Transforms an input equation into a LayerColletion object with Layers as seperate nested lists.
          * 
-         * @version: 0.1
+         * @version: 2.0
          * 
          * @returns {finalEquation} LayerCollection object with corrently nested layer objects.
          */
         internal LayerCollection SplitEquation()
         {
-            Console.WriteLine("/TODO");
+            int openBracketAmount = currentLayer.layerContent.Count(s => s.tokenString.Contains("("));
 
-            return this.finalEquation;
+            LayerCollection tempLayer;
+
+            for (int i = 0; i < openBracketAmount; i++)
+            {
+                int firstOpenBracketIndex = currentLayer.layerContent.FindIndex(a => a.tokenString.Contains("("));
+                int lastClosedBracketIndex = currentLayer.layerContent.FindLastIndex(a => a.tokenString.Contains(")"));
+
+                tempLayer = new LayerCollection(i);
+                tempLayer.layerContent = currentLayer.layerContent.GetRange(firstOpenBracketIndex + 1, lastClosedBracketIndex - firstOpenBracketIndex - 1);
+
+                currentLayer.layerContent.RemoveRange(firstOpenBracketIndex, lastClosedBracketIndex - firstOpenBracketIndex + 1);
+                currentLayer.layerContent.Insert(firstOpenBracketIndex, tempLayer);
+            }
+
+            return currentLayer;
         }
 
     }
