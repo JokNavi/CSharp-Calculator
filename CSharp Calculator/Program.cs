@@ -1,12 +1,19 @@
-﻿namespace CSharp_Calculator
+﻿using System.Xml;
+
+namespace CSharp_Calculator
 {
 
     internal class Program
     {
         private static void Main(string[] args)
         {
-            Calculator();
-            
+            //Calculator();
+            InputStringToTokens inputStringToTokens = new InputStringToTokens("1+1-1");
+            LayerCollection convertedEquation = inputStringToTokens.TokeniseEquation();
+
+            Calculate calc = new Calculate();
+            double output = calc.workOutLayer(convertedEquation);
+            Console.WriteLine(output);
         }
 
         private static void Calculator()

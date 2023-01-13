@@ -4,6 +4,7 @@
     {
         private protected LayerCollection finalEquation;
         private protected LayerCollection currentLayer;
+        
         internal SplitLayers(LayerCollection inputLayer)
         {
             this.currentLayer = inputLayer;
