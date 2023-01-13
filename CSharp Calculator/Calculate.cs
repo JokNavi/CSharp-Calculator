@@ -8,6 +8,8 @@ namespace CSharp_Calculator
 {
     internal class Calculate
     {
+        private protected string currentOperator = "";
+        private protected float finalEquation = 0;
 
     }
 }
