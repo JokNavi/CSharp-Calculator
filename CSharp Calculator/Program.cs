@@ -15,6 +15,8 @@
             List<object> layerGroups = createLayers.CreateLayersGroups();
             Console.WriteLine($"layerGroups: [{string.Join(", ", layerGroups)}]");
 
+            ProcessLayers processLayers = new ProcessLayers();
+            processLayers.ProcessAllLayers(layerGroups);
         }
     }
 }

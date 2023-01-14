@@ -6,7 +6,7 @@
         private List<string> inputEquation;
         private string currentNumber = "";
         private bool appended = false;
-        internal CreateNumbers(string inputEquationString) => inputEquation = inputEquationString.Select(c => c.ToString()).ToList();
+        internal CreateNumbers(string inputEquationString) => inputEquation = inputEquationString.Select(c => c.ToString()).Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
 
         internal List<string> CreateNumberGroups()
         {

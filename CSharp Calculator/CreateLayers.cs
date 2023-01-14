@@ -1,4 +1,6 @@
-﻿namespace CSharp_Calculator
+﻿using System.Security;
+
+namespace CSharp_Calculator
 {
     internal class CreateLayers
     {
@@ -13,17 +15,18 @@
 
             for (int i = 0; i < openBracketAmount; i++)
             {
-                int firstOpenBracketIndex = currentLayer.FindIndex(a => a.ToString().Contains("("));
-                int lastClosedBracketIndex = currentLayer.FindLastIndex(a => a.ToString().Contains(")"));
+                int openBracketIndex = currentLayer.FindLastIndex(a => a.ToString().Contains("("));
+                int closedBracketIndex = currentLayer.GetRange(openBracketIndex, currentLayer.Count - openBracketIndex).FindIndex(a => a.ToString().Contains(")"))+openBracketIndex;
 
                 tempList = new List<object>();
-                tempList = currentLayer.GetRange(firstOpenBracketIndex + 1, lastClosedBracketIndex - firstOpenBracketIndex - 1);
+                tempList = currentLayer.GetRange(openBracketIndex, closedBracketIndex - openBracketIndex+1);
 
-                currentLayer.RemoveRange(firstOpenBracketIndex, lastClosedBracketIndex - firstOpenBracketIndex + 1);
-                currentLayer.Insert(firstOpenBracketIndex, tempList);
+                currentLayer.RemoveRange(openBracketIndex, closedBracketIndex - openBracketIndex+1);
+                currentLayer.Insert(openBracketIndex, tempList);
             }
             return currentLayer;
         }
+
     }
 }
 
