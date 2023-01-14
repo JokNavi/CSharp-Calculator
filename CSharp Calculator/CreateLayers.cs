@@ -2,24 +2,28 @@
 {
     internal class CreateLayers
     {
-        private List<object> finalEquation;
         private List<object> currentLayer;
         internal CreateLayers(List<string> input) => currentLayer = new List<object>(input);
 
         internal List<object> CreateLayersGroups()
         {
-            if (!currentLayer.Contains("(")) { finalEquation = new List<object>(); return finalEquation; }
+            int openBracketAmount = currentLayer.Count(s => s.ToString().Contains("("));
 
-            for (int i = 0; i < currentLayer.Count; i++)
+            List<object> tempList;
+
+            for (int i = 0; i < openBracketAmount; i++)
             {
-                int firstOpenBracketIndex = currentLayer.FindIndex(a => (string)a == "(");
-                int lastClosedBracketIndex = currentLayer.FindLastIndex(a => (string)a == ")");
-                List<object> tempList = currentLayer.GetRange(firstOpenBracketIndex, lastClosedBracketIndex - firstOpenBracketIndex + 1);
+                int firstOpenBracketIndex = currentLayer.FindIndex(a => a.ToString().Contains("("));
+                int lastClosedBracketIndex = currentLayer.FindLastIndex(a => a.ToString().Contains(")"));
+
+                tempList = new List<object>();
+                tempList = currentLayer.GetRange(firstOpenBracketIndex + 1, lastClosedBracketIndex - firstOpenBracketIndex - 1);
+
                 currentLayer.RemoveRange(firstOpenBracketIndex, lastClosedBracketIndex - firstOpenBracketIndex + 1);
                 currentLayer.Insert(firstOpenBracketIndex, tempList);
             }
-            
-            return finalEquation;
+            return currentLayer;
         }
     }
 }
+

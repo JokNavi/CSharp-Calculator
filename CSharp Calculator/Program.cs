@@ -9,7 +9,11 @@
             //validateInput
             CreateNumbers createGroups = new CreateNumbers(input);
             List<string> numberGroups = createGroups.CreateNumberGroups();
-            Console.WriteLine($"[{string.Join(", ", numberGroups)}]");
+            Console.WriteLine($"NumberGroups: [{string.Join(", ", numberGroups)}]");
+
+            CreateLayers createLayers = new CreateLayers(numberGroups);
+            List<object> layerGroups = createLayers.CreateLayersGroups();
+            Console.WriteLine($"layerGroups: [{string.Join(", ", layerGroups)}]");
 
         }
     }
