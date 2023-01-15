@@ -5,7 +5,9 @@
         private static void Main(string[] args)
         {
             Console.Write("Please enter your equation: ");
-            string input = Console.ReadLine();
+            string input = "1+(2+(3+3))";
+            //string input = Console.ReadLine();
+
             //validateInput
             CreateNumbers createGroups = new CreateNumbers(input);
             List<string> numberGroups = createGroups.CreateNumberGroups();
