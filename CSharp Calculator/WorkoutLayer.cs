@@ -18,11 +18,11 @@ namespace CSharp_Calculator
         internal string WorkOut(List<object> input)
         { 
             foreach (List<object> filter in FilterOperators) 
-            {
+            {    
                 FilterLayer filterLayers = new FilterLayer(filter);
-            }
-            
+                List<object> filteredList = filterLayers.Filter();
 
+            }
             return "0";
         }
     }
