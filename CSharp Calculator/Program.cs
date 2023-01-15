@@ -5,7 +5,7 @@
         private static void Main(string[] args)
         {
             Console.Write("Please enter your equation: ");
-            string input = "1+(2+(3+3+3))";
+            string input = "(1^1)+1+(1/2)";
             //string input = Console.ReadLine();
 
             //validateInput
@@ -18,7 +18,8 @@
             Console.WriteLine($"layerGroups: [{string.Join(", ", layerGroups)}]");
 
             ProcessLayers processLayers = new ProcessLayers();
-            processLayers.ProcessAllLayers(layerGroups);
+            string answer = processLayers.ProcessAllLayers(layerGroups);
+            Console.WriteLine(answer);
         }
     }
 }

@@ -16,17 +16,20 @@ namespace CSharp_Calculator
             string equationAnswer = "";
             foreach (List<object> filter in FilterOperators)
             {
-                for (int i = 0; i < input.Count; i++)
+                int i = 0;
+                while (i < input.Count)
                 {
                     if (filter.Contains(input[i]))
                     {
                         float NumOne = Convert.ToSingle(input[i - 1]);
                         float NumTwo = Convert.ToSingle(input[i + 1]);
                         equationAnswer = DoOperator(NumOne, NumTwo, (string)input[i]);
-                        input.RemoveRange(i - 1, i + 1);
-                        input.Insert(i-1, equationAnswer);
+                        Console.WriteLine($"{NumOne} {(string)input[i]} {NumTwo} = {equationAnswer}");
+                        input.RemoveRange(i - 1, 3);
+                        input.Insert(i - 1, equationAnswer);
                         i = 0;
                     }
+                    i++;
                 }
             }
             return equationAnswer;
@@ -49,6 +52,6 @@ namespace CSharp_Calculator
                     return "-1";
             }
         }
-
+        
     }
 }

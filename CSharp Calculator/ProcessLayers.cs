@@ -17,7 +17,7 @@
             {
                 return workoutLayer.WorkOut(inputList);
             }
-            return "0";
+            return "-1";
         }
         
     }
