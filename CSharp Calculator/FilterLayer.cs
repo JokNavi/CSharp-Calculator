@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace CSharp_Calculator
 {
-    internal class FilterLayers
+    internal class FilterLayer
     {
+        private List<Object> filter;
+        internal FilterLayer(List<Object> inputFilter) => filter = inputFilter;
+
+
     }
 }

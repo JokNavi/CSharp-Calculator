@@ -4,6 +4,8 @@
     {
         internal string ProcessAllLayers(List<object> inputList)
         {
+            WorkoutLayer workoutLayer = new WorkoutLayer();
+
             for (int i = 0; i < inputList.Count; i++)
             {
                if (inputList[i] is List<object>)
@@ -13,18 +15,11 @@
             }
             if (!inputList.OfType<List<object>>().Any())
             {
-                return ProcessLayer(inputList);
+                return workoutLayer.WorkOut(inputList);
             }
             return "0";
         }
-        internal string ProcessLayer(List<object> inputList)
-        {
-            foreach (object item in inputList)
-            {
-                Console.WriteLine(item.ToString());
-            }
-            return "0";
-        }
+        
     }
 
 }
