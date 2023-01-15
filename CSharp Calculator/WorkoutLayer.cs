@@ -25,5 +25,6 @@ namespace CSharp_Calculator
             }
             return "0";
         }
+        static private bool StringIsNumber(string i) => double.TryParse(i, out _);
     }
 }
