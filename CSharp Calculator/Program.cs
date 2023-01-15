@@ -5,7 +5,7 @@
         private static void Main(string[] args)
         {
             Console.Write("Please enter your equation: ");
-            string input = "1+(2+(3+3))";
+            string input = "1+(2+(3+3+3))";
             //string input = Console.ReadLine();
 
             //validateInput
