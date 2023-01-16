@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using System.Text.RegularExpressions;
 
 namespace CSharp_Calculator
 {
@@ -20,14 +20,27 @@ namespace CSharp_Calculator
                 Console.WriteLine($"Filter: {string.Join(",", filter)}");
                 while (i < input.Count)
                 {
-                    if (filter.Contains(input[i]))
+                    string currentToken = input[i].ToString();
+                    if (filter.Contains(currentToken.Substring(0, 1)))
                     {
                         float NumOne = Convert.ToSingle(input[i - 1]);
-                        float NumTwo = Convert.ToSingle(input[i + 1]);
-                        equationAnswer = DoOperator(NumOne, NumTwo, (string)input[i]);
-                        Console.WriteLine($"{NumOne} {(string)input[i]} {NumTwo} = {equationAnswer}");
-                        input.RemoveRange(i - 1, 3);
-                        input.Insert(i - 1, equationAnswer);
+
+                        if ((currentToken.Substring(0, 1) == "-" || currentToken.Substring(0, 1) == "+") && currentToken.Count() > 1)
+                        {
+                            float numTwo = Convert.ToSingle(currentToken.Substring(1, currentToken.Count() - 1));
+                            equationAnswer = DoOperator(NumOne, numTwo, currentToken.Substring(0, 1));
+                            Console.WriteLine($"{NumOne} {currentToken.Substring(0, 1)} {NumTwo} = {equationAnswer}");
+                            input.RemoveRange(i - 1, 3);
+                            input.Insert(i - 1, equationAnswer);
+                        }
+                        else
+                        {
+                            float numTwo = Convert.ToSingle(input[i - 1]);
+                            equationAnswer = DoOperator(NumOne, numTwo, currentToken);
+                            Console.WriteLine($"{NumOne} {currentToken.Substring(0, 1)} {NumTwo} = {equationAnswer}");
+                            input.RemoveRange(i - 1, 3);
+                            input.Insert(i - 1, equationAnswer);
+                        }
                         i = 0;
                     }
                     i++;
@@ -53,6 +66,6 @@ namespace CSharp_Calculator
                     return "-1";
             }
         }
-        
+
     }
 }
