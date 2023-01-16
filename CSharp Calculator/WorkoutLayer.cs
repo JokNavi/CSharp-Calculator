@@ -17,6 +17,7 @@ namespace CSharp_Calculator
             foreach (List<object> filter in FilterOperators)
             {
                 int i = 0;
+                Console.WriteLine($"Filter: {string.Join(",", filter)}");
                 while (i < input.Count)
                 {
                     if (filter.Contains(input[i]))
