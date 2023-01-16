@@ -5,7 +5,7 @@
         private static void Main(string[] args)
         {
             Console.Write("Please enter your equation: ");
-            string input = "1++2,0";
+            string input = "23,1+6,1^3";
             //string input = Console.ReadLine();
             Console.WriteLine(input.Count());
             //validateInput
@@ -19,7 +19,7 @@
 
             ProcessLayers processLayers = new ProcessLayers();
             string answer = processLayers.ProcessAllLayers(layerGroups);
-            Console.WriteLine(answer);
+            Console.WriteLine($"Your answer: {answer}");
         }
     }
 }
