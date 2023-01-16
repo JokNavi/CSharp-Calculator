@@ -12,7 +12,7 @@
         {
             for (int i = 0; i < inputEquation.Count; i++)
             {
-                if (StringIsNumber(inputEquation[i]) || ((appended == false && finalEquation.Count() > 1 && finalEquation[i-1] != ")") && (inputEquation[i] == "+" || inputEquation[i] == "-") && i != inputEquation.Count && StringIsNumber(inputEquation[i+1])) || (i != 0 && inputEquation[i] == "." && StringIsNumber(inputEquation[i - 1])))
+                if (StringIsNumber(inputEquation[i]) || ((appended == false && finalEquation.LastOrDefault() != ")") && (inputEquation[i] == "+" || inputEquation[i] == "-") && i != inputEquation.Count && StringIsNumber(inputEquation[i+1])) || (i != 0 && inputEquation[i] == "." && StringIsNumber(inputEquation[i - 1])))
                 {
                     Console.WriteLine($"Appended: {inputEquation[i]}");
                     currentNumber += inputEquation[i];

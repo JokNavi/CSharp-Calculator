@@ -5,7 +5,7 @@
         private static void Main(string[] args)
         {
             Console.Write("Please enter your equation: ");
-            string input = "(1^1)+1+(1/2)";
+            string input = "1++2,0";
             //string input = Console.ReadLine();
             Console.WriteLine(input.Count());
             //validateInput

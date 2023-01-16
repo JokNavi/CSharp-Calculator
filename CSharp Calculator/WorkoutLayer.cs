@@ -21,9 +21,15 @@ namespace CSharp_Calculator
                 while (i < input.Count)
                 {
                     string currentToken = input[i].ToString();
-                    if (filter.Contains(currentToken.Substring(0, 1)) && i > 0)
+                    if (filter.Contains(currentToken))
                     {
-
+                        float NumOne = Convert.ToSingle(input[i - 1]);
+                        float numTwo = Convert.ToSingle(input[i + 1]);
+                        equationAnswer = DoOperator(NumOne, numTwo, currentToken);
+                        Console.WriteLine($"{NumOne} {currentToken} {numTwo} = {equationAnswer}");
+                        input.RemoveRange(i - 1, 3);
+                        input.Insert(i - 1, equationAnswer);
+                        i = 0;
                     }
                     i++;
                 }
